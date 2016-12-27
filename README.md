@@ -1,6 +1,7 @@
 # Keyframe-Cleanup-Maya-Tool
 A python tool to delete extraneous keyframes from a selected object or objects in Maya. Extraneous keyframes are defined as non-changing attributes between keys.
 
+## Interface
 ``` python
 mc.window(width=150)
 mc.columnLayout(adjustableColumn=True)
@@ -8,7 +9,10 @@ mc.button(label='Clean Up Keys of Selected',command="cleanupKeys(mc.ls(selection
 mc.showWindow()
 ```
 ![alt text][ui]
+
 _**Fig 0:** Simple interface that calls the script by creating an array of objects containing the selected objects and creating an array of keyed frames based on one of the attributes._
+
+## Script
 ```python
 import maya.cmds as mc
 
@@ -42,7 +46,6 @@ def checkAttr(obj, t0, t1, attr):
     if (att0==att1):
         mc.cutKey(obj, time=(t0,t0), clear=True, option='keys', attribute=attr)
 ```
-
 
 Key check and deletion are taken care of with the `checkAttr(obj,t0,t1,attr)` method which takes in an object `obj` and compares the passed in attribute `attr` at given time values `t0` and `t1`.
 
