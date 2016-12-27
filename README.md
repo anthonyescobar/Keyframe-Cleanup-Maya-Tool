@@ -1,16 +1,14 @@
 # Keyframe-Cleanup-Maya-Tool
 A python tool to delete extraneous keyframes from a selected object or objects in Maya. Extraneous keyframes are defined as non-changing attributes between keys.
 
-
-![alt text][ui]
-**_Fig 0:** Simple interface that calls the script by creating an array of objects containing the selected objects and creating an array of keyed frames based on one of the attributes.
 ``` python
 mc.window(width=150)
 mc.columnLayout(adjustableColumn=True)
 mc.button(label='Clean Up Keys of Selected',command="cleanupKeys(mc.ls(selection=True),mc.keyframe(sel, query=True, attribute='translateX'))")
 mc.showWindow()
 ```
-
+![alt text][ui]
+_**Fig 0:** Simple interface that calls the script by creating an array of objects containing the selected objects and creating an array of keyed frames based on one of the attributes._
 ```python
 import maya.cmds as mc
 
@@ -51,16 +49,16 @@ Key check and deletion are taken care of with the `checkAttr(obj,t0,t1,attr)` me
 `cleanupKeys(selection, aArray)` is the main command that calls `checkAttr(obj,t0,t1,attr)` while iterating through the selection list and checking through the attributes in the list of provided attributes. This is done so the user can provide custom attributes to check by editing the attributes array.
 
 ![alt text][fig1]
-**_Fig 1:** After selecting both objects we see the keyframes attributed to them._
+_**Fig 1:** After selecting both objects we see the keyframes attributed to them._
 
 ![alt text][fig2]
-**_Fig 2:** After running the script with the objects to clean selected we see that some keyframes are missing from the timeline and that the attributes of the pCube, which are listed on the right, are in light pink denoting that those keyframes are nonexistent._
+_**Fig 2:** After running the script with the objects to clean selected we see that some keyframes are missing from the timeline and that the attributes of the pCube, which are listed on the right, are in light pink denoting that those keyframes are nonexistent._
 
 ![alt text][fig3]
-**_Fig 3:** Selecting just the pCube we see that frame 1 is removed from the timeline as well because no attributes are keyframed._
+_**Fig 3:** Selecting just the pCube we see that frame 1 is removed from the timeline as well because no attributes are keyframed._
 
 ![alt text][fig4]
-**_Fig 4:** All keys attached to non-changing attributes are also deleted however the keyframe is noted on the timeline because at least one attribute is keyed._
+_**Fig 4:** All keys attached to non-changing attributes are also deleted however the keyframe is noted on the timeline because at least one attribute is keyed._
 
 [ui]: https://github.com/anthonyescobar/Keyframe-Cleanup-Maya-Tool/blob/master/DocPics/UI.PNG "interface to run script"
 [fig1]: https://github.com/anthonyescobar/Keyframe-Cleanup-Maya-Tool/blob/master/DocPics/Maya2.PNG "Figure 1"
